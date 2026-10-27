@@ -1,0 +1,22 @@
+[project]
+name = "marketpulse-common"
+version = "0.1.0"
+description = "MarketPulse shared contracts: events, IDs, config, Mongo schema"
+requires-python = ">=3.12"
+dependencies = ["pydantic==2.9.2", "PyYAML==6.0.2", "pymongo==4.9.1"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.3", "httpx==0.27.2", "fastapi==0.115.0", "vaderSentiment==3.3.2"]
+spark = ["pyspark==3.5.3", "vaderSentiment==3.3.2"]   # optional: enables Spark transform tests (needs Java 17)
+analytics = ["vaderSentiment==3.3.2"]   # analytics_job standalone
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["services/common"]
+
+[tool.pytest.ini_options]
+testpaths = ["services/common/tests", "services/api/tests", "services/ingestion/tests", "services/streaming/tests"]
+pythonpath = ["services/common", "services/api", "services/ingestion", "services/streaming"]

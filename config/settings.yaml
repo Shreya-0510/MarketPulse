@@ -1,0 +1,32 @@
+kafka:
+  topics:
+    market_raw: market.raw
+    social_raw: social.raw
+    news_raw: news.raw
+    analytics_entity: analytics.entity
+    analytics_attention: analytics.attention
+    analytics_anomalies: analytics.anomalies
+    system_pipeline: system.pipeline
+  raw_partitions: 3
+  derived_partitions: 1
+  retention_ms: 604800000   # 7 days (local dev)
+market:
+  default_interval: 1d
+  lookback_period: 1y         # first run per symbol
+  incremental_period: 5d      # subsequent runs when history already persisted
+  max_fetch_attempts: 3
+  request_delay_seconds: 1.0  # pause between symbols (rate limiting)
+sentiment:
+  model: vader
+  positive_threshold: 0.05    # compound >= this -> positive
+  negative_threshold: -0.05   # compound <= this -> negative; otherwise neutral
+anomaly:
+  baseline_windows: 24        # minimum historical windows required
+  window_minutes: 60
+  z_threshold: 3.0
+  min_count: 5                # minimum observed value in current window
+  min_std: 0.5                # reject numerically unstable baselines
+retention:
+  social_days: 14
+  news_days: 30
+  market_days: 0              # 0 = keep forever

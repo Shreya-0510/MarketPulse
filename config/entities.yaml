@@ -1,0 +1,43 @@
+# Matching rules for social/news relevance. Every key must exist in watchlist.yaml.
+# strong_terms: a single hit is enough (cashtags, unambiguous names).
+# context_terms: ambiguous words; only count if a context_required term co-occurs.
+# exclude_terms: if present, the match is rejected.
+entities:
+  aapl:
+    strong_terms: ["$AAPL", "Apple Inc", "AAPL"]
+    context_terms: ["Apple"]
+    context_required: ["stock", "shares", "iPhone", "earnings", "Tim Cook", "Nasdaq", "market cap", "Mac", "iPad"]
+    exclude_terms: ["apple pie", "apple juice", "apple cider", "big apple"]
+  msft:
+    strong_terms: ["$MSFT", "Microsoft", "MSFT"]
+  nvda:
+    strong_terms: ["$NVDA", "NVIDIA", "Nvidia", "NVDA"]
+  amzn:
+    strong_terms: ["$AMZN", "Amazon.com", "AMZN"]
+    context_terms: ["Amazon"]
+    context_required: ["stock", "shares", "AWS", "earnings", "Andy Jassy", "Nasdaq", "market cap", "Prime"]
+    exclude_terms: ["amazon rainforest", "amazon river", "amazon basin"]
+  googl:
+    strong_terms: ["$GOOGL", "$GOOG", "Alphabet Inc", "GOOGL"]
+    context_terms: ["Google", "Alphabet"]
+    context_required: ["stock", "shares", "earnings", "Sundar Pichai", "Nasdaq", "market cap", "YouTube", "Gemini"]
+  reliance:
+    strong_terms: ["Reliance Industries", "RELIANCE.NS", "Mukesh Ambani", "RIL"]
+    context_terms: ["Reliance", "Jio"]
+    context_required: ["stock", "shares", "Nifty", "Sensex", "NSE", "BSE", "earnings", "Ambani"]
+  tcs:
+    strong_terms: ["Tata Consultancy Services", "TCS.NS"]
+    context_terms: ["TCS"]
+    context_required: ["stock", "shares", "Nifty", "Sensex", "IT services", "earnings", "Tata"]
+  infy:
+    strong_terms: ["Infosys", "INFY.NS"]
+    context_terms: ["INFY"]
+    context_required: ["stock", "shares", "Nifty", "Sensex", "earnings", "NYSE"]
+  hdfcbank:
+    strong_terms: ["HDFC Bank", "HDFCBANK.NS"]
+  nifty50:
+    strong_terms: ["NIFTY 50", "Nifty50", "Nifty 50"]
+    context_terms: ["Nifty"]
+    context_required: ["index", "points", "Sensex", "NSE", "closed", "opened"]
+  sp500:
+    strong_terms: ["S&P 500", "S&P500", "$SPX", "$SPY"]

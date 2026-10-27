@@ -1,0 +1,14 @@
+# Instruments tracked for market data. entity_id is the stable internal key used everywhere.
+# Aliases / matching rules live in entities.yaml (keyed by entity_id).
+instruments:
+  - {entity_id: aapl,     symbol: AAPL,        display_name: Apple,                      market: US,    exchange: NASDAQ, instrument_type: equity, currency: USD, timezone: America/New_York}
+  - {entity_id: msft,     symbol: MSFT,        display_name: Microsoft,                  market: US,    exchange: NASDAQ, instrument_type: equity, currency: USD, timezone: America/New_York}
+  - {entity_id: nvda,     symbol: NVDA,        display_name: NVIDIA,                     market: US,    exchange: NASDAQ, instrument_type: equity, currency: USD, timezone: America/New_York}
+  - {entity_id: amzn,     symbol: AMZN,        display_name: Amazon,                     market: US,    exchange: NASDAQ, instrument_type: equity, currency: USD, timezone: America/New_York}
+  - {entity_id: googl,    symbol: GOOGL,       display_name: Alphabet,                   market: US,    exchange: NASDAQ, instrument_type: equity, currency: USD, timezone: America/New_York}
+  - {entity_id: reliance, symbol: RELIANCE.NS, display_name: Reliance Industries,        market: India, exchange: NSE,    instrument_type: equity, currency: INR, timezone: Asia/Kolkata}
+  - {entity_id: tcs,      symbol: TCS.NS,      display_name: Tata Consultancy Services, market: India, exchange: NSE,    instrument_type: equity, currency: INR, timezone: Asia/Kolkata}
+  - {entity_id: infy,     symbol: INFY.NS,     display_name: Infosys,                    market: India, exchange: NSE,    instrument_type: equity, currency: INR, timezone: Asia/Kolkata}
+  - {entity_id: hdfcbank, symbol: HDFCBANK.NS, display_name: HDFC Bank,                  market: India, exchange: NSE,    instrument_type: equity, currency: INR, timezone: Asia/Kolkata}
+  - {entity_id: nifty50,  symbol: "^NSEI",     display_name: NIFTY 50,                   market: India, exchange: NSE,    instrument_type: index,  currency: INR, timezone: Asia/Kolkata}
+  - {entity_id: sp500,    symbol: "^GSPC",     display_name: S&P 500,                    market: US,    exchange: NYSE,   instrument_type: index,  currency: USD, timezone: America/New_York}
