@@ -3,9 +3,11 @@ sources:
   - {name: yfinance_daily, type: yfinance, url: "https://ranaroussi.github.io/yfinance/", enabled: true, poll_interval_seconds: 3600, timeout_seconds: 30, options: {interval: 1d, lookback_period: 1y}}
   - {name: bluesky_jetstream, type: jetstream, url: "wss://jetstream.us-east.bsky.network/subscribe", enabled: true, poll_interval_seconds: 0, timeout_seconds: 30, options: {wanted_collections: ["app.bsky.feed.post"], max_backoff_seconds: 60, stale_after_seconds: 120}}
   - {name: cnbc_top, type: rss, url: "https://www.cnbc.com/id/100003114/device/rss/rss.html", enabled: true, poll_interval_seconds: 300, timeout_seconds: 15, options: {publisher: "CNBC"}}
-  - {name: yahoo_finance_news, type: rss, url: "https://finance.yahoo.com/news/rssindex", enabled: true, poll_interval_seconds: 300, timeout_seconds: 15, options: {publisher: "Yahoo Finance"}}
+  # Yahoo's legacy RSS endpoint now returns 404/429; use the supported Google News
+  # aggregator below for entity-specific finance coverage instead.
+  - {name: yahoo_finance_news, type: rss, url: "https://finance.yahoo.com/news/rssindex", enabled: false, poll_interval_seconds: 300, timeout_seconds: 15, options: {publisher: "Yahoo Finance", note: "disabled: legacy endpoint unavailable"}}
   - {name: marketwatch_top, type: rss, url: "https://feeds.marketwatch.com/marketwatch/topstories/", enabled: true, poll_interval_seconds: 300, timeout_seconds: 15, options: {publisher: "MarketWatch"}}
   - {name: ft_home, type: rss, url: "https://www.ft.com/rss/home", enabled: false, poll_interval_seconds: 600, timeout_seconds: 15, options: {publisher: "Financial Times", note: "headline metadata only; enable after validation"}}
   - {name: livemint_news, type: rss, url: "https://www.livemint.com/rss/news", enabled: true, poll_interval_seconds: 300, timeout_seconds: 15, options: {publisher: "Mint"}}
   - {name: business_standard_latest, type: rss, url: "https://www.business-standard.com/rss/latest.rss", enabled: true, poll_interval_seconds: 300, timeout_seconds: 15, options: {publisher: "Business Standard"}}
-  - {name: google_news_entities, type: google_news, url: "https://news.google.com/rss/search", enabled: false, poll_interval_seconds: 900, timeout_seconds: 15, options: {query_from: entities, aggregator: true}}
+  - {name: google_news_entities, type: google_news, url: "https://news.google.com/rss/search", enabled: true, poll_interval_seconds: 900, timeout_seconds: 15, options: {query_from: entities, aggregator: true}}

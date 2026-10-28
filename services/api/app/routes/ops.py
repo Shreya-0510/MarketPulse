@@ -30,10 +30,17 @@ def sources_status(repo=Depends(deps.get_status_repo), cfg=Depends(deps.get_conf
     for s in cfg.sources:
         d = docs.get(s.name, {})
         implemented = s.type in IMPLEMENTED_TYPES
-        state = d.get("state") or ("DISABLED" if not s.enabled else ("NOT_RUN" if implemented else "NOT_IMPLEMENTED"))
+        # A persisted failure from an earlier run must not override a source
+        # that is now disabled in configuration.
+        state = "DISABLED" if not s.enabled else (
+            d.get("state") or ("NOT_RUN" if implemented else "NOT_IMPLEMENTED")
+        )
         out.append(SourceStatus(
             name=s.name, type=s.type, url=s.url, enabled=s.enabled, implemented=implemented, state=state,
-            verification="OBSERVED_SUCCESS" if d.get("last_success_at") else "UNVERIFIED",
-            last_attempt_at=d.get("last_attempt_at"), last_success_at=d.get("last_success_at"),
-            last_error=d.get("last_error"), updated_at=d.get("updated_at"), totals=d.get("totals", {})))
+            verification="OBSERVED_SUCCESS" if s.enabled and d.get("last_success_at") else "UNVERIFIED",
+            last_attempt_at=d.get("last_attempt_at") if s.enabled else None,
+            last_success_at=d.get("last_success_at") if s.enabled else None,
+            last_error=d.get("last_error") if s.enabled else None,
+            updated_at=d.get("updated_at") if s.enabled else None,
+            totals=d.get("totals", {}) if s.enabled else {}))
     return out
